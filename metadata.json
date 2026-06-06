@@ -1,0 +1,6 @@
+{
+  "name": "Neural City Air Quality Layer",
+  "description": "An environmental health and city-level air quality comparison layer for Indian cities based on real-time CPCB SAMEER data feed. Citizens compare livability, and municipal officers track pollution stress, with an integrated Gemini natural-language query analyst.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

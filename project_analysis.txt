@@ -1,0 +1,14 @@
+1. Prototype link
+The prototype is a locally hosted React-Vite web application. It runs on a local development server, typically accessible at http://localhost:5173 after running `npm run dev` in the project repository.
+
+2. Public dataset used
+- OpenAQ API (https://api.openaq.org): Provides real-time and historical Air Quality Index (AQI) sensor data (PM2.5, PM10) from ground stations across India.
+- India Meteorological Department (IMD) API (https://api.imd.gov.in/api/v1): Official Indian government data schemas used for current meteorological parameters (M.S.L.P, Wind Direction) and 5-Day Rainfall severity forecasts.
+
+3. 50 words Note explaining why you selected this data
+OpenAQ provides the most comprehensive, standardized, and real-time programmatic access to air quality sensors, which is crucial for building an accurate environmental dashboard. The IMD dataset was selected because it is the official government meteorological authority in India, ensuring authentic and authoritative local weather warnings and actionable rainfall forecasts.
+
+4. Briefly explain how you cleaned, transformed, or structured the data.
+- OpenAQ API Transformation: The raw JSON responses contain deeply nested arrays of parameters. This data was parsed, filtered exclusively for Indian locations, and flattened into a standardized `AQIEntry` TypeScript interface. The highest pollutant value (e.g., PM2.5 or PM10) was dynamically calculated to represent the primary AQI score.
+- Spatial Mapping: Missing or inconsistent geographic coordinates were bypassed by directly extracting `coordinates.latitude` and `coordinates.longitude` from the sensor payload, enabling dynamic plotting on the React-Leaflet map without hardcoded lists.
+- Weather Data Structuring: IMD weather and rainfall responses were parsed and mapped to our custom `IMDCurrentWeather` and `IMDRainfallForecast` interfaces. Rainfall severity colors (Red, Orange, Yellow) were mapped to visual UI indicators, and raw ISO timestamp strings were parsed and reformatted for human-readable charting in Recharts.
